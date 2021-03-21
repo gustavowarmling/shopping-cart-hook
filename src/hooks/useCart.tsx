@@ -37,7 +37,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const { data } = await api.get(`stock/${productId}`);
       const stock: Stock = data; 
       const productExists = cart.find(product => product.id === productId);
-      
+
       if(!productExists && stock.amount > 0){
         const responseProducts = await api.get<Product>(
           `products/${productId}`
@@ -68,7 +68,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const productExists = cart.find(product => product.id === productId);
 
       if(productExists){
-        //pegar todos os products menos ele
         const productsWithoutProductId = cart.filter(product =>  product.id !== productId );
 
         setCart(productsWithoutProductId);
